@@ -1,28 +1,29 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-@RequestMapping("/")
+import java.security.Principal;
+
+@RequestMapping("/user")
 @Controller
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    public void SetUserService (UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
-
-    @GetMapping("/user")
-    public String userPage() {
-        return "users";
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @RequestMapping(method = RequestMethod.GET)
+    public String getUsersDataByName(Principal principal, ModelMap model) {
+        model.addAttribute("user", userService.getUser(principal.getName()));
+        return "/user";
     }
 
-    @GetMapping("/admin")
-    public String adminPage() {
-        return "users";
-    }
 }

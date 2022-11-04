@@ -11,11 +11,26 @@
     <hr>
     <form action="#" th:action="@{/users/add}" th:object="${user}"
           method="POST">
+        <input type="hidden" th:field="*{id}" />
         <input type="text" th:field="*{name}"
                placeholder="Name" class="form-control mb-4 col-4">
-
-        <input type="text" th:field="*{lastName}"
-               placeholder="last Name" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{lastname}"
+               placeholder="LastName" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{age}"
+               placeholder="Age" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{email}"
+               placeholder="email" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{password}"
+               placeholder="password" class="form-control mb-4 col-4">
+        <div>
+            <td>Select Role:</td>
+            <td>
+                <select th:field="*{roles}">
+                    <option th:each="role : ${roles}"
+                            th:value="${role.id}"
+                            th:text="${role.name}"></option>
+                </select>
+        </div>
 
         <button type="submit" class="btn btn-info col-2"> Save user</button>
     </form>
@@ -23,6 +38,7 @@
     <hr>
 
     <a th:href = "@{/users}"> Back to list user</a>
+    <a href="#" th:href="@{/logout}">Log Out</a>
 </div>
 </body>
 </html>
