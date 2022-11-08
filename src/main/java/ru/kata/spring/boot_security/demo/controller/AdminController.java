@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@RequestMapping("/users")
+@RequestMapping("/admin")
 @Controller
 public class AdminController {
     private final UserService userService;
@@ -37,7 +37,7 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.GET)
     public String allUsers(ModelMap model) {
         model.addAttribute("users", this.userService.allUser());
-        return "/users";
+        return "admin";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -52,7 +52,7 @@ public class AdminController {
     public String addUser(User user) {
         userService.add(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -69,14 +69,14 @@ public class AdminController {
     public String editUser(User user) {
         userService.add(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")

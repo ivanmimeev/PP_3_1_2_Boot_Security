@@ -8,7 +8,7 @@
 <body>
 <h1>save user</h1>
 <hr>
-<form action="#" th:action="@{'/users/edit/'+ ${user.id}}" th:object="${user}"
+<form action="#" th:action="@{'/admin/edit/'+ ${user.id}}" th:object="${user}"
       method="POST">
     <input type="hidden" th:field="*{id}"/>
     <input type="text" th:field="*{name}"
@@ -37,7 +37,7 @@
 
 <hr>
 
-<a th:href="@{/users}"> Back to list user</a>
+<a th:href="@{/admin}"> Back to list user</a>
 <a href="#" th:href="@{/logout}">Log Out</a>
 </div>
 </body>
