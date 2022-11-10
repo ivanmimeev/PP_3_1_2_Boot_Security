@@ -3,41 +3,78 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-<body>
-<table border="1">
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>lastName</th>
-    <th>Age</th>
-    <th>email</th>
-    <th>Password</th>
-    <th>Role</th>
-    <th>Edit</th>
-    <th>Delete</th>
-  </tr>
-  <tr th:each="user: ${users}">
-    <td th:text="${user.id}">id</td>
-    <td th:text="${user.name}">name</td>
-    <td th:text="${user.lastname}">lastname</td>
-    <td th:text="${user.age}">name</td>
-    <td th:text="${user.email}">email</td>
-    <td th:text="${user.password}">name</td>
-    <td th:text="${user.roles}">role</td>
+<div class="pb-4">
+<div class="navbar bg-dark text-white">
+  <div class="float-right">
+  <a href="#" th:href="@{/logout}">Logout</a>
+  </div>
+</div>
+</div>
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="nav flex-column nav-pills">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user">User</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <h3>
+        Admin Panel
+      </h3>
+      <div class="bg-light">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#!">Users table</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/add">New User</a>
+        </li>
+      </ul>
+      <h3>
+        All users
+      </h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>lastName</th>
+          <th>Age</th>
+          <th>email</th>
+          <th>Role</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tr th:each="user: ${users}">
+          <td th:text="${user.id}">id</td>
+          <td th:text="${user.name}">name</td>
+          <td th:text="${user.lastname}">lastname</td>
+          <td th:text="${user.age}">name</td>
+          <td th:text="${user.email}">email</td>
+          <td th:text="${user.roles}">role</td>
 
-    <td>
-      <a th:href="@{'/admin/edit/'+ ${user.id}}" class="btn btn-info">Edit</a></td>
-    <form action="#" th:action="@{'/admin/delete/'+ ${user.id}}" th:object="${user}"
-          method="POST">
-      <td> <button type="submit" class="btn btn-info col-2"> Delete</button> </td>
-    </form>
-  </tr>
-</table>
+          <td>
+            <a th:href="@{'/admin/edit/'+ ${user.id}}" class="btn btn-info">Edit</a></td>
+
+          <form action="#" th:action="@{'/admin/delete/'+ ${user.id}}" th:object="${user}"
+                method="POST">
+            <td> <button type="submit" class="btn btn-danger">Delete</button></td>
+          </form>
+        </tr>
+      </table>
+
+      </div>
+    </div>
+  </div>
 </div>
-<p><a href="/admin/add">Add a new user</a></p>
-<a href="#" th:href="@{/logout}">Log Out</a>
-</div>
-</body>
-</html>
