@@ -6,6 +6,7 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class RoleService {
@@ -19,5 +20,6 @@ public class RoleService {
     public Collection<Role> getRoles() {
         return roleRepository.findAll();
     }
+
 }
 

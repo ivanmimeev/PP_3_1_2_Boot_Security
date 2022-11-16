@@ -3,25 +3,65 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-<body>
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>lastName</th>
-        <th>Age</th>
-        <th>email</th>
-        <th>Password</th>
-    </tr>
-        <td th:text="${user.id}">id</td>
-        <td th:text="${user.name}">name</td>
-        <td th:text="${user.lastname}">lastname</td>
-        <td th:text="${user.age}">name</td>
-        <td th:text="${user.email}">email</td>
-        <td th:text="${user.password}">name</td>
-</table>
-<a href="#" th:href="@{/logout}">Log Out</a>
-</body>
+<div class="pb-4">
+    <div class="navbar bg-dark text-white">
+        <tr th:text="${user.email}"></tr>
+        with roles:
+        <tr th:text="${user.roles}"></tr>
+        <li class="nav-item nav justify-content-end">
+            <a href="#" th:href="@{/logout}" class="text-muted">Logout</a>
+        </li>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav flex-column nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+            <ul class="nav flex-column nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/user">User</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <h3>
+                User information-page
+            </h3>
+            <div class="bg-light">
+            <h3>
+                All users
+            </h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>lastName</th>
+                    <th>Age</th>
+                    <th>email</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+                    <td th:text="${user.id}">id</td>
+                    <td th:text="${user.name}">name</td>
+                    <td th:text="${user.lastname}">lastname</td>
+                    <td th:text="${user.age}">name</td>
+                    <td th:text="${user.email}">email</td>
+                    <td th:text="${user.roles}">role</td>
+
+                </tr>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
 </html>

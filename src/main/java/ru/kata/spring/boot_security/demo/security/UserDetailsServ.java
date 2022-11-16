@@ -20,15 +20,15 @@ public class UserDetailsServ implements UserDetailsService {
 
     @Transactional
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails user = userService.getUser(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserDetails user = userService.getEmail(email);
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '/%s' not found", username));
+            throw new UsernameNotFoundException(String.format("User '/%s' not found", email));
         }
         user.getAuthorities();
         return user;
     }
 
-    ;
+
 }
 

@@ -16,6 +16,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 
 @RequestMapping("/admin")
@@ -35,10 +36,13 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(method = RequestMethod.GET)
-    public String allUsers(ModelMap model) {
+    public String allUsers(ModelMap model, Principal principal, User user) {
+        model.addAttribute("currentUser", userService.getUser(principal.getName()));
         model.addAttribute("users", this.userService.allUser());
+        model.addAttribute("roles", roleService.getRoles());
         return "admin";
     }
+
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/add")
