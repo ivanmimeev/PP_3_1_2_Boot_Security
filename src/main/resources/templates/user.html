@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html">
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,10 +24,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
+            <div sec:authorize="hasRole('ADMIN')">
             <ul class="nav flex-column nav-pills">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin">Admin</a>
                 </li>
+            </ul>
+            </div>
             <ul class="nav flex-column nav-pills">
                 <li class="nav-item">
                     <a class="nav-link active" href="/user">User</a>

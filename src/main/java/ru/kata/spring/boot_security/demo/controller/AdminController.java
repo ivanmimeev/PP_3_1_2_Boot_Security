@@ -45,27 +45,11 @@ public class AdminController {
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/add")
-    public String addPage(User user, ModelMap model) {
-        model.addAttribute("roles", roleService.getRoles());
-        return "add";
-    }
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addUser(User user) {
         userService.add(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return "redirect:/admin";
-    }
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("roles", roleService.getRoles());
-        User user = userService.getById(id);
-        model.addAttribute("user", user);
-        return "/edit";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
