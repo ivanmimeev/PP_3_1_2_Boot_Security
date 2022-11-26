@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UserService {
@@ -13,6 +14,6 @@ public interface UserService {
 
     User getById(long id);
     void deleteById(long id);
-    User getUser(String name);
+    Optional<User> getUser(String name);
     User getEmail(String email);
 }

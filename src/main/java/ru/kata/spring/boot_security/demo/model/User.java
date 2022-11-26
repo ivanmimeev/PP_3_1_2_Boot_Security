@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -7,11 +8,11 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -41,7 +42,8 @@ public class User implements UserDetails  {
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     @ToString.Exclude
-    private Collection <Role> roles;
+    @JsonProperty("roles")
+    private List<Role> roles;
 
     @Override
     public boolean equals(Object o) {
@@ -85,4 +87,6 @@ public class User implements UserDetails  {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

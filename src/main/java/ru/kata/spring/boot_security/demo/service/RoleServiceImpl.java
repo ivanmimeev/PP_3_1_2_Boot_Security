@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
-import java.util.Collection;
+import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -16,9 +16,12 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public Collection<Role> getRoles() {
+    public List<Role> getRoles() {
         return roleRepository.findAll();
     }
+
+
+
 
 }
 

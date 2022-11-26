@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+  <link  href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+  <script type="text/javascript" th:src="@{/js/admin.js}"  ></script>
+</head>
+<body>
+<div class="navbar navbar-fixed-top navbar-dark bg-dark">
+  <ul class="nav navbar-nav list-unstyled list-group-horizontal-md" id="navbar-top">
+  </ul>
+  <form th:action="@{/logout}" method="POST" class="float-right">
+    <input class="btn btn-link text-secondary" type="submit" value="Logout"/>
+  </form>
+</div>
+<div class="container-fluid flex-grow-1 d-flex">
+  <div class="row flex-fill flex-column flex-sm-row">
+    <div class="col-sm-3 col-md-2 sidebar flex-shrink-1 full-window pt-3" id="Navbar">
+      <ul class="nav flex-column nav-pills" id="hornav">
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 flex-grow-1 py-3 bg-light pl-5" id="contentWindow">
+    </div>
+  </div>
+</div>
+</body>
+</html>
